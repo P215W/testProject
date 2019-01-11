@@ -1,0 +1,172 @@
+<!-- api AIzaSyCM0n2gtS-SY_by5Ug7xZI0MVKe8pDcaO8 --> 
+
+<!DOCTYPE html>
+<html>
+  <head>
+      <style>
+
+      body {
+        margin: 0;
+      }
+
+      #map {
+        height: 1000px;  /* The height is 400 pixels */
+        width: 100%;  /* The width is the width of the web page */
+        margin-top: 0px;
+      }
+
+    .rotate {
+      -ms-transform: rotate(90deg); /* IE 9 */
+      -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+      transform: rotate(90deg);
+      margin-top: 88px;
+    }
+
+    </style>
+
+  </head>
+
+  <body>
+    <!-- <img src="https://www.telegraph.co.uk/content/dam/Travel/2016/june/bonn-rhine-AP-TRAVEL.jpg?imwidth=450"> -->
+    <!-- <h2>peter</h2> -->
+    <!--The div element for the map -->
+    <div id="map"></div>
+
+<script>
+// Initialize and add the map
+function initMap() {
+  // The location of Uluru
+  // to do: schauen, ob ich die lat und Langs nicht direkt in die postion property von array integrieren kann.
+  var uluru = {lat: -25.344, lng: 131.036};
+  var augustin = {lat: 50.773966, lng: 7.210782};
+  var touqet_Plage1 = {lat: 50.527742, lng: 1.579361};
+  var touqet_Plage2 = {lat: 50.526930, lng: 1.580080};
+  var touqet_Plage3 = {lat: 50.529456, lng: 1.582573};
+
+  // The map, centered at Uluru
+  var map = new google.maps.Map(
+      document.getElementById('map'), {zoom: 3, center: uluru});
+
+/* functionong markers, muted:
+var marker = new google.maps.Marker({position: uluru, map: map});
+var marker2 = new google.maps.Marker({position: augustin, map: map, title: "laa"});
+var touqetPlage1Marker = new google.maps.Marker({position: touqet_Plage1, map: map});
+var touqetPlage2Marker = new google.maps.Marker({position: touqet_Plage2, map: map});
+var touqetPlage3Marker = new google.maps.Marker({position: touqet_Plage3, map: map});
+*/
+
+const array = [
+  { marker: new google.maps.Marker({position: uluru, map: map}) },
+  { marker: new google.maps.Marker({position: augustin, map: map, title: "laa"}) },
+  { marker: new google.maps.Marker({position: touqet_Plage1, map: map}) },
+  { marker: new google.maps.Marker({position: touqet_Plage2, map: map}) },
+  { marker: new google.maps.Marker({position: touqet_Plage3, map: map}) }
+];
+// to do: schauen, ob ich array2 die property contentStr nicht auch einfach noch in array1 (hierüber) integrieren kann.
+const array2 = [
+  { contentStr: '<div id="google-popup">' +'<img width="650px" height="auto" src="file:///C:/Users/Marc/Pictures/Camera%20Roll/Fotos/1%20-%20Fotos%20Urlaube%20(noch%20durchzugucken%20und%20zu%20l%C3%B6schen%20wenn%20unsch%C3%B6n)/Frankreich%20Ostern%202017%20mit%20Anna/Normandie%20Ostern%2017%20(15).JPG" >' + '<p>Styled Google maps pin popup example by Paul Seal on </p>'+ '</div>' },
+  { contentStr: '<div id="google-popup" style="width: 650px; overflow-y: visible; color: red">' +'<img width="650px" height="auto" src="file:///C:/Users/Marc/Pictures/Camera%20Roll/Fotos/1%20-%20Fotos%20Urlaube%20(noch%20durchzugucken%20und%20zu%20l%C3%B6schen%20wenn%20unsch%C3%B6n)/Frankreich%20Ostern%202017%20mit%20Anna/Normandie%20Ostern%2017%20(35).JPG" >' + '<p>Styled Google maps pin popup example by Paul Seal</p>'+ '</div>' },
+  { contentStr: '<div id="google-popup" style="width: 650px; overflow-y: visible; color: red">' +'<img width="650px" height="auto" src="file:///C:/Users/Marc/Pictures/Camera%20Roll/Fotos/1%20-%20Fotos%20Urlaube%20(noch%20durchzugucken%20und%20zu%20l%C3%B6schen%20wenn%20unsch%C3%B6n)/Frankreich%20Ostern%202017%20mit%20Anna/Normandie%20Ostern%2017%20(11).JPG" >' + '<p>Styled Google maps pin popup example by Paul Seal</p>'+ '</div>' },
+  { contentStr: '<div id="google-popup" style="width: 650px; overflow-y: visible; color: red">' +'<img width="650px" height="auto" src="file:///C:/Users/Marc/Pictures/Camera%20Roll/Fotos/1%20-%20Fotos%20Urlaube%20(noch%20durchzugucken%20und%20zu%20l%C3%B6schen%20wenn%20unsch%C3%B6n)/Frankreich%20Ostern%202017%20mit%20Anna/Normandie%20Ostern%2017%20(16).JPG" >' + '<p>Styled Google maps pin popup example by Paul Seal</p>'+ '</div>' },
+  { contentStr: '<div id="google-popup" style="width: 650px; overflow-y: visible; color: red">' +'<img class="rotate" width="650px" height="auto" src="file:///C:/Users/Marc/Pictures/Camera%20Roll/Fotos/1%20-%20Fotos%20Urlaube%20(noch%20durchzugucken%20und%20zu%20l%C3%B6schen%20wenn%20unsch%C3%B6n)/Frankreich%20Ostern%202017%20mit%20Anna/Normandie%20Ostern%2017%20(65).JPG" >' + '<p>Styled Google maps pin popup example by Paul Seal</p>'+ '</div>' }
+];
+
+/*
+const miniMaps = document.getElementsByTagName("div");
+console.log(miniMaps);
+const popUp = () => {
+  console.log("Geht hier");
+};
+for (let i=0; i<=miniMaps.length-1; i++) {
+  console.log("peter");
+  console.log(miniMaps[i]);
+  miniMaps[i].addEventListener("mouseover", popUp);
+}
+*/
+
+// adjusted -> WORKS!!!
+for (let i=0; i<=array.length-1; i++) {
+  array[i].marker.addListener("click", () => {
+  let infoWindowN = new google.maps.InfoWindow({
+    content: array2[i].contentStr, // contentString,
+    "maxWidth": 1000
+  });
+	infoWindowN.open(map, array[i].marker);
+});
+}
+
+/*
+// no. 1
+var contentString = '<div id="google-popup">' +'<img width="650px" height="auto" src="file:///C:/Users/Marc/Pictures/Camera%20Roll/Fotos/1%20-%20Fotos%20Urlaube%20(noch%20durchzugucken%20und%20zu%20l%C3%B6schen%20wenn%20unsch%C3%B6n)/Frankreich%20Ostern%202017%20mit%20Anna/Normandie%20Ostern%2017%20(15).JPG" >' + '<p>Styled Google maps pin popup example by Paul Seal on </p>'+ '</div>';
+
+var infoWindow = new google.maps.InfoWindow({
+  content: contentString,
+  "maxWidth": 1000
+});
+
+marker.addListener("click", () => {
+  console.log("clicked1");
+	infoWindow.open(map, marker);
+});
+
+// no. 2
+var contentString2 = '<div id="google-popup" style="width: 650px; overflow-y: visible; color: red">' +'<img width="650px" height="auto" src="file:///C:/Users/Marc/Pictures/Camera%20Roll/Fotos/1%20-%20Fotos%20Urlaube%20(noch%20durchzugucken%20und%20zu%20l%C3%B6schen%20wenn%20unsch%C3%B6n)/Frankreich%20Ostern%202017%20mit%20Anna/Normandie%20Ostern%2017%20(35).JPG" >' + '<p>Styled Google maps pin popup example by Paul Seal</p>'+ '</div>';
+
+var infoWindow2 = new google.maps.InfoWindow({
+  content: contentString2,
+  "maxWidth": 1000
+});
+
+marker2.addListener("click", () => {
+  console.log("clicked2");
+  console.log(this);
+  infoWindow.open(map, this.marker);
+});
+
+// no. 3  // height weglaasenn!!!
+var contentString3 = '<div id="google-popup" style="width: 650px; overflow-y: visible; color: red">' +'<img width="650px" height="auto" src="file:///C:/Users/Marc/Pictures/Camera%20Roll/Fotos/1%20-%20Fotos%20Urlaube%20(noch%20durchzugucken%20und%20zu%20l%C3%B6schen%20wenn%20unsch%C3%B6n)/Frankreich%20Ostern%202017%20mit%20Anna/Normandie%20Ostern%2017%20(11).JPG" >' + '<p>Styled Google maps pin popup example by Paul Seal</p>'+ '</div>';
+var infoWindow3 = new google.maps.InfoWindow({
+  content: contentString3,
+  "maxWidth": 1000
+});
+touqetPlage1Marker.addListener("click", () => {
+  console.log("clicked3");
+  infoWindow3.open(map, touqetPlage1Marker);
+});
+
+// no. 4
+var contentString4 = '<div id="google-popup" style="width: 650px; overflow-y: visible; color: red">' +'<img width="650px" height="auto" src="file:///C:/Users/Marc/Pictures/Camera%20Roll/Fotos/1%20-%20Fotos%20Urlaube%20(noch%20durchzugucken%20und%20zu%20l%C3%B6schen%20wenn%20unsch%C3%B6n)/Frankreich%20Ostern%202017%20mit%20Anna/Normandie%20Ostern%2017%20(16).JPG" >' + '<p>Styled Google maps pin popup example by Paul Seal</p>'+ '</div>';
+var infoWindow4 = new google.maps.InfoWindow({
+  content: contentString4,
+  "maxWidth": 1000
+});
+touqetPlage2Marker.addListener("click", () => {
+  console.log("clicked4");
+  infoWindow4.open(map, touqetPlage2Marker);
+});
+
+// no. 5
+var contentString5 = '<div id="google-popup" style="width: 650px; overflow-y: visible; color: red">' +'<img class="rotate" width="650px" height="auto" src="file:///C:/Users/Marc/Pictures/Camera%20Roll/Fotos/1%20-%20Fotos%20Urlaube%20(noch%20durchzugucken%20und%20zu%20l%C3%B6schen%20wenn%20unsch%C3%B6n)/Frankreich%20Ostern%202017%20mit%20Anna/Normandie%20Ostern%2017%20(65).JPG" >' + '<p>Styled Google maps pin popup example by Paul Seal</p>'+ '</div>';
+var infoWindow5 = new google.maps.InfoWindow({
+  content: contentString5,
+  "maxWidth": 1000
+});
+touqetPlage3Marker.addListener("click", () => {
+  console.log("clicked5");
+  infoWindow5.open(map, touqetPlage3Marker);
+});
+
+*/
+
+}
+</script>
+    <!--Load the API from the specified URL
+    * The async attribute allows the browser to render the page while the API loads
+    * The key parameter will contain your own API key (which is not needed for this tutorial)
+    * The callback parameter executes the initMap() function
+    -->
+
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCM0n2gtS-SY_by5Ug7xZI0MVKe8pDcaO8&callback=initMap"></script>
+  </body>
+</html>

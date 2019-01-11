@@ -1,0 +1,45 @@
+h3 {
+	color: green;
+}
+
+h2 {
+	color: blue;
+}
+
+.rotate {
+    -ms-transform: rotate(90deg); /* IE 9 */
+    -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+    transform: rotate(90deg);
+    margin-top: 88px;
+  }
+
+element.style {
+    position: absolute;
+    left: 1px;
+    top: 1px;
+    border-radius: 2px;
+    background-color: rgb(255, 255, 255);
+    width: 905px;
+ }
+
+.iwstyle {
+	width: 900px;
+	border: 1px solid red;
+	color: red;
+	max-height: 1000px;
+}
+
+
+
+#testOne {
+	width: 650px;
+	height: 800px;
+	border: 1px solid red;
+}
+
+#infowindow {
+    max-height: 250px;
+    overflow-y: auto;
+    color: red;
+    border: 1px solid red;
+}
